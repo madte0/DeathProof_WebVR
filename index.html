@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Proof Project</title>
+
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="./script.js" defer></script>
+
+</head>
+<body>
+    <a-scene>
+        <!-- Assets Management System -->
+        <a-assets>
+            <a-assets-item  id="dp-scene" src="/assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene.glb"></a-assets-item>
+        </a-assets>
+
+        <!-- Death Proof Scene -->
+            <a-entity gltf-model="#dp-scene" scroll-animation-scrub></a-entity>
+
+        <!-- Camera Rig / Wrapper -->
+        <!-- The Camera -->
+            <a-camera wasd-controls="enabled: false" look-controls></a-camera>
+
+    </a-scene>
+</body>
+</html>
