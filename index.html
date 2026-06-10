@@ -7,33 +7,9 @@
 
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <script src="./script.js" defer></script>
-
-    <style>
-        #sound-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #fff;
-            font-family: sans-serif;
-            font-size: 20px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-            user-select: none;
-        }
-        #sound-btn:hover {
-            background: rgba(0, 0, 0, 0.85);
-        }
-    </style>
-
+    
+    <link rel="stylesheet" href="./css/modalstyles.css">
+    
 </head>
 <body>
     <!-- Starts muted until the user clicks (browser autoplay policy requires a gesture) -->
