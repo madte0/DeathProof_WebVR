@@ -145,3 +145,82 @@ AFRAME.registerComponent('scroll-animation-scrub', {
     window.removeEventListener('wheel', this._onWheel);
   },
 });
+
+// modal windows
+
+const modal = document.getElementById("modal");
+
+const modalImage =
+document.getElementById("modalImage");
+
+const youtubeFrame =
+document.getElementById("youtubeFrame");
+
+const closeModal =
+document.getElementById("closeModal");
+
+function openImage(src){
+
+    modal.style.display = "block";
+
+    modalImage.style.display = "block";
+
+    youtubeFrame.style.display = "none";
+
+    modalImage.src = src;
+}
+
+function openVideo(url){
+
+    modal.style.display = "block";
+
+    youtubeFrame.style.display = "block";
+
+    modalImage.style.display = "none";
+
+    youtubeFrame.src = url;
+}
+
+closeModal.addEventListener("click",()=>{
+
+    modal.style.display = "none";
+
+    youtubeFrame.src = "";
+});
+
+// 1st image
+
+document
+.getElementById("zone1")
+.addEventListener("click",()=>{
+
+    openImage(
+        "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
+    );
+
+});
+
+// 2nd image
+
+document
+.getElementById("zone2")
+.addEventListener("click",()=>{
+
+    openImage(
+        "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
+    );
+
+});
+
+
+// video
+
+document
+.getElementById("zone3")
+.addEventListener("click",()=>{
+
+    openVideo(
+        "https://www.youtube.com/embed/Y69kGmPeHw0"
+    );
+
+});

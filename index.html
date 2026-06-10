@@ -15,6 +15,7 @@
         <!-- Assets Management System -->
         <a-assets>
             <a-assets-item id="dp-scene" src="./assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene_external_textures.gltf?v=20260608"></a-assets-item>
+            <!-- modal images -->
             <img
                 id="photo1"
                 src="./assets/chevy_nova_scene_webpTextures_glb/photo1.webp">
@@ -30,6 +31,31 @@
         <!-- Camera Rig / Wrapper -->
         <!-- The Camera -->
             <a-camera wasd-controls="enabled: false" look-controls></a-camera>
+
+        <!-- modal windows -->
+            <a-plane
+                id="zone1"
+                position="-0.3 1.3 -2"
+                width="0.4"
+                height="0.2"
+                opacity="0">
+            </a-plane>
+
+            <a-plane
+                id="zone2"
+                position="0 1.3 -2"
+                width="0.4"
+                height="0.2"
+                opacity="0">
+            </a-plane>
+
+            <a-plane
+                id="zone3"
+                position="0.3 1.3 -2"
+                width="0.4"
+                height="0.2"
+                opacity="0">
+            </a-plane>
 
     </a-scene>
 
