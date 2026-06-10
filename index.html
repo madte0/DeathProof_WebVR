@@ -8,9 +8,38 @@
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <script src="./script.js" defer></script>
 
+    <style>
+        #sound-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        #sound-btn:hover {
+            background: rgba(0, 0, 0, 0.85);
+        }
+    </style>
+
 </head>
 <body>
-    <a-scene>
+    <!-- Starts muted until the user clicks (browser autoplay policy requires a gesture) -->
+    <button id="sound-btn" title="Unmute sound">&#128263;</button>
+
+<a-scene>
         <!-- Assets Management System -->
         <a-assets>
             <a-assets-item id="dp-scene" src="./assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene_external_textures.gltf?v=20260608"></a-assets-item>
@@ -19,6 +48,9 @@
         <!-- Death Proof Scene -->
             <a-entity gltf-model="#dp-scene" scroll-animation-scrub></a-entity>
 
+        <!-- Audio -->
+            <a-entity sound="src:/assets/AUDIO/Engine Rev Continuous.mp3; autoplay:false; loop:true; volume:0"></a-entity>
+        
         <!-- Camera Rig / Wrapper -->
         <!-- The Camera -->
             <a-camera wasd-controls="enabled: false" look-controls></a-camera>

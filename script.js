@@ -1,3 +1,33 @@
+(function () {
+    const btn = document.getElementById('sound-btn');
+    let playing = false;
+
+    btn.addEventListener('click', function () {
+        const soundEntity = document.querySelector('a-entity[sound]');
+        if (!soundEntity) return;
+
+        const scene = document.querySelector('a-scene');
+
+        // Resume the Web Audio context (blocked by browser until a user gesture)
+        const listener = scene && scene.audioListener;
+        const ctx = listener ? listener.context : (window.THREE && THREE.AudioContext && THREE.AudioContext.getContext());
+        if (ctx && ctx.state === 'suspended') ctx.resume();
+
+        if (!playing) {
+            soundEntity.setAttribute('sound', 'volume', 1);
+            soundEntity.components.sound && soundEntity.components.sound.playSound();
+            btn.innerHTML = '&#128266;';
+            btn.title = 'Mute sound';
+            playing = true;
+        } else {
+            soundEntity.setAttribute('sound', 'volume', 0);
+            btn.innerHTML = '&#128263;';
+            btn.title = 'Unmute sound';
+            playing = false;
+        }
+    });
+})();
+
 AFRAME.registerComponent('scroll-animation-scrub', {
   schema: {
     sensitivity: { type: 'number', default: 0.01 },
