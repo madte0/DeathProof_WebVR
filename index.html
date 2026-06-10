@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/modalstyles.css">
     
 </head>
+
 <body>
     <!-- Starts muted until the user clicks (browser autoplay policy requires a gesture) -->
     <button id="sound-btn" title="Unmute sound">&#128263;</button>
@@ -18,19 +19,63 @@
 <a-scene>
         <!-- Assets Management System -->
         <a-assets>
-            <a-assets-item id="dp-scene" src="./assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene_external_textures.gltf?v=20260608"></a-assets-item>
+
+            <a-assets-item
+                id="dp-scene"
+                src="./assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene_external_textures.gltf?v=20260608">
+            </a-assets-item>
+
+            <img
+                id="photo1"
+                src="./assets/chevy_nova_scene_webpTextures_glb/photo1.webp">
+
+            <img
+                id="photo2"
+                src="./assets/chevy_nova_scene_webpTextures_glb/photo2.webp">
+
         </a-assets>
 
-        <!-- Death Proof Scene -->
-            <a-entity gltf-model="#dp-scene" scroll-animation-scrub></a-entity>
+        <a-entity
+            id="deathProofModel"
+            gltf-model="#dp-scene"
+            scroll-animation-scrub>
+        </a-entity>
 
         <!-- Audio -->
             <a-entity sound="src:/assets/AUDIO/Engine Rev Continuous.mp3; autoplay:false; loop:true; volume:0"></a-entity>
         
         <!-- Camera Rig / Wrapper -->
         <!-- The Camera -->
-            <a-camera wasd-controls="enabled: false" look-controls></a-camera>
+            <a-camera wasd-controls="enabled: false" look-controls>
+                <a-cursor
+                    color="white"
+                    rayOrigin="mouse">
+                </a-cursor>
+            </a-camera>
 
     </a-scene>
+
+    <div id="modal" class="modal">
+
+        <div class="modal-content">
+
+            <span id="closeModal">&times;</span>
+
+            <img
+                id="modalImage"
+                style="display:none;">
+
+            <iframe
+                id="youtubeFrame"
+                width="900"
+                height="500"
+                style="display:none;"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
