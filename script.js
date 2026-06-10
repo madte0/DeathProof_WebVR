@@ -232,17 +232,17 @@ function createHotspots(visor) {
   const leftMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-              0.24,
-              0.22
+            0.26,
+            0.24
           ),
           leftMaterial
       );
 
-  leftMesh.position.set(
-      -0.11,
-      -0.01,
-      0.08
-  );
+      leftMesh.position.set(
+        0.02,
+        -0.01,
+        0.08
+    );
 
   leftMesh.name = "leftHotspot";
 
@@ -255,17 +255,17 @@ function createHotspots(visor) {
   const centerMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-              0.24,
-              0.22
+            0.26,
+            0.24
           ),
           centerMaterial
       );
 
-  centerMesh.position.set(
-      0.17,
-      -0.01,
-      0.08
-  );
+      centerMesh.position.set(
+        0.27,
+        -0.01,
+        0.08
+    );
 
   centerMesh.name = "centerHotspot";
 
@@ -278,17 +278,17 @@ function createHotspots(visor) {
   const rightMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-              0.24,
-              0.22
+            0.26,
+            0.24
           ),
           rightMaterial
       );
 
-  rightMesh.position.set(
-      0.45,
-      -0.01,
-      0.08
-  );
+      rightMesh.position.set(
+        0.52,
+        -0.01,
+        0.08
+    );
 
   rightMesh.name = "rightHotspot";
 
