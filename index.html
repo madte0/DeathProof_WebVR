@@ -7,6 +7,7 @@
 
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./css/modalstyles.css">
 
 </head>
 <body>
@@ -14,6 +15,13 @@
         <!-- Assets Management System -->
         <a-assets>
             <a-assets-item id="dp-scene" src="./assets/chevy_nova_scene_webpTextures_glb/chevy_nova_scene_external_textures.gltf?v=20260608"></a-assets-item>
+            <img
+                id="photo1"
+                src="./assets/chevy_nova_scene_webpTextures_glb/photo1.webp">
+
+            <img
+                id="photo2"
+                src="./assets/chevy_nova_scene_webpTextures_glb/photo2.webp">
         </a-assets>
 
         <!-- Death Proof Scene -->
@@ -24,6 +32,8 @@
             <a-camera wasd-controls="enabled: false" look-controls></a-camera>
 
     </a-scene>
+
+    <!-- Deft Proof / MODALS -->
     <div id="modal" class="modal">
 
         <div class="modal-content">
