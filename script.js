@@ -198,7 +198,7 @@ modal.addEventListener("click", (e) => {
 
 function createHotspots(visor) {
 
-  // RED
+  // RED - Tarantino
   const leftMaterial =
       new THREE.MeshBasicMaterial({
           color: 0xff0000,
@@ -207,7 +207,7 @@ function createHotspots(visor) {
           side: THREE.DoubleSide
       });
 
-  // GREEN
+  // GREEN - The Girls
   const centerMaterial =
       new THREE.MeshBasicMaterial({
           color: 0x00ff00,
@@ -216,7 +216,7 @@ function createHotspots(visor) {
           side: THREE.DoubleSide
       });
 
-  // BLUE
+  // BLUE - Video
   const rightMaterial =
       new THREE.MeshBasicMaterial({
           color: 0x0000ff,
@@ -225,69 +225,69 @@ function createHotspots(visor) {
           side: THREE.DoubleSide
       });
 
-  // -------------------------
+  // =========================
   // LEFT HOTSPOT
-  // -------------------------
+  // =========================
 
   const leftMesh =
-    new THREE.Mesh(
-        new THREE.PlaneGeometry(
-            0.28,
-            0.18
-        ),
-        leftMaterial
-    );
+      new THREE.Mesh(
+          new THREE.PlaneGeometry(
+              0.24,
+              0.22
+          ),
+          leftMaterial
+      );
 
   leftMesh.position.set(
-      -0.24,
-      0,
-      0.05
+      -0.11,
+      -0.01,
+      0.08
   );
 
   leftMesh.name = "leftHotspot";
 
   visor.add(leftMesh);
 
-  // -------------------------
+  // =========================
   // CENTER HOTSPOT
-  // -------------------------
+  // =========================
 
   const centerMesh =
-    new THREE.Mesh(
-        new THREE.PlaneGeometry(
-            0.28,
-            0.18
-        ),
-        centerMaterial
-    );
+      new THREE.Mesh(
+          new THREE.PlaneGeometry(
+              0.24,
+              0.22
+          ),
+          centerMaterial
+      );
 
   centerMesh.position.set(
-      0.05,
-      0,
-      0.05
+      0.17,
+      -0.01,
+      0.08
   );
 
   centerMesh.name = "centerHotspot";
 
   visor.add(centerMesh);
 
-  // -------------------------
+  // =========================
   // RIGHT HOTSPOT
-  // -------------------------
+  // =========================
 
   const rightMesh =
-    new THREE.Mesh(
-        new THREE.PlaneGeometry(
-            0.28,
-            0.18
-        ),
-        rightMaterial
-    );
+      new THREE.Mesh(
+          new THREE.PlaneGeometry(
+              0.24,
+              0.22
+          ),
+          rightMaterial
+      );
 
   rightMesh.position.set(
-      0.34,
-      0,
-      0.05
+      0.45,
+      -0.01,
+      0.08
   );
 
   rightMesh.name = "rightHotspot";
