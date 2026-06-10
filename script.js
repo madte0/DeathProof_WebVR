@@ -203,7 +203,7 @@ function createHotspots(visor) {
       new THREE.MeshBasicMaterial({
           color: 0xff0000,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0,
           side: THREE.DoubleSide
       });
 
@@ -212,7 +212,7 @@ function createHotspots(visor) {
       new THREE.MeshBasicMaterial({
           color: 0x00ff00,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0,
           side: THREE.DoubleSide
       });
 
@@ -221,7 +221,7 @@ function createHotspots(visor) {
       new THREE.MeshBasicMaterial({
           color: 0x0000ff,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0,
           side: THREE.DoubleSide
       });
 
@@ -232,16 +232,16 @@ function createHotspots(visor) {
   const leftMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-            0.26,
-            0.24
+            1.10,
+            0.80
           ),
           leftMaterial
       );
 
       leftMesh.position.set(
-        0.02,
-        -0.01,
-        0.25
+        0.85,
+        0.55,
+        -0.23
     );
 
   leftMesh.name = "leftHotspot";
@@ -255,16 +255,16 @@ function createHotspots(visor) {
   const centerMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-            0.26,
-            0.24
+            1.10,
+            0.80
           ),
           centerMaterial
       );
 
       centerMesh.position.set(
-        0.27,
-        -0.01,
-        0.25
+         2,
+         0.40,
+        -0.30
     );
 
   centerMesh.name = "centerHotspot";
@@ -278,16 +278,16 @@ function createHotspots(visor) {
   const rightMesh =
       new THREE.Mesh(
           new THREE.PlaneGeometry(
-            0.26,
-            0.24
+            1.10,
+            0.80
           ),
           rightMaterial
       );
 
       rightMesh.position.set(
-        0.52,
-        -0.01,
-        0.25
+        3.20,
+        0.35,
+        -0.45
     );
 
   rightMesh.name = "rightHotspot";
@@ -423,7 +423,7 @@ function setupRaycaster(
           ) {
 
               openImage(
-                  "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
+                  "./modal_img/death_prooff_DIREC_02.png"
               );
           }
 
@@ -433,7 +433,7 @@ function setupRaycaster(
           ) {
 
               openImage(
-                  "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
+                  "./modal_img/death_prooff_GIRLS_02.png"
               );
           }
 
