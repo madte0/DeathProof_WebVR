@@ -196,216 +196,256 @@ modal.addEventListener("click", (e) => {
     }
 });
 
+function createHotspots(visor) {
+
+  // RED
+  const leftMaterial =
+      new THREE.MeshBasicMaterial({
+          color: 0xff0000,
+          transparent: true,
+          opacity: 0.7,
+          side: THREE.DoubleSide
+      });
+
+  // GREEN
+  const centerMaterial =
+      new THREE.MeshBasicMaterial({
+          color: 0x00ff00,
+          transparent: true,
+          opacity: 0.7,
+          side: THREE.DoubleSide
+      });
+
+  // BLUE
+  const rightMaterial =
+      new THREE.MeshBasicMaterial({
+          color: 0x0000ff,
+          transparent: true,
+          opacity: 0.7,
+          side: THREE.DoubleSide
+      });
+
+  // -------------------------
+  // LEFT HOTSPOT
+  // -------------------------
+
+  const leftMesh =
+    new THREE.Mesh(
+        new THREE.PlaneGeometry(
+            0.28,
+            0.18
+        ),
+        leftMaterial
+    );
+
+  leftMesh.position.set(
+      -0.24,
+      0,
+      0.05
+  );
+
+  leftMesh.name = "leftHotspot";
+
+  visor.add(leftMesh);
+
+  // -------------------------
+  // CENTER HOTSPOT
+  // -------------------------
+
+  const centerMesh =
+    new THREE.Mesh(
+        new THREE.PlaneGeometry(
+            0.28,
+            0.18
+        ),
+        centerMaterial
+    );
+
+  centerMesh.position.set(
+      0.05,
+      0,
+      0.05
+  );
+
+  centerMesh.name = "centerHotspot";
+
+  visor.add(centerMesh);
+
+  // -------------------------
+  // RIGHT HOTSPOT
+  // -------------------------
+
+  const rightMesh =
+    new THREE.Mesh(
+        new THREE.PlaneGeometry(
+            0.28,
+            0.18
+        ),
+        rightMaterial
+    );
+
+  rightMesh.position.set(
+      0.34,
+      0,
+      0.05
+  );
+
+  rightMesh.name = "rightHotspot";
+
+  visor.add(rightMesh);
+
+  console.log("Colored hotspots created");
+
+  setupRaycaster(
+      leftMesh,
+      centerMesh,
+      rightMesh
+  );
+}
+
 // =====================================================
-// VISOR HOTSPOTS
+// FIND VISOR AND CREATE HOTSPOTS
 // =====================================================
 
 window.addEventListener("load", () => {
 
-    const modelEntity =
-        document.querySelector("#deathProofModel");
+  const modelEntity =
+      document.querySelector("#deathProofModel");
 
-    modelEntity.addEventListener("model-loaded", () => {
+  modelEntity.addEventListener("model-loaded", () => {
 
-        const root =
-            modelEntity.getObject3D("mesh");
+      const root =
+          modelEntity.getObject3D("mesh");
 
-        if (!root) {
+      if (!root) {
 
-            console.error("GLTF root not found");
+          console.error(
+              "GLTF root not found"
+          );
 
-            return;
-        }
+          return;
+      }
 
-        const visor =
-            root.getObjectByName(
-                "visorvisor_fotos_GRP"
-            );
+      const visor =
+          root.getObjectByName(
+              "visorvisor_fotos_GRP"
+          );
 
-        if (!visor) {
+      if (!visor) {
 
-            console.error(
-                "visorvisor_fotos_GRP not found"
-            );
+          console.error(
+              "visorvisor_fotos_GRP not found"
+          );
 
-            return;
-        }
+          return;
+      }
 
-        console.log(
-            "visor found",
-            visor
-        );
+      console.log(
+          "visor found",
+          visor
+      );
 
-        createHotspots(visor);
-    });
+      createHotspots(
+          visor
+      );
+
+  });
+
 });
 
-function createHotspots(visor) {
-
-    const hotspotMaterial =
-        new THREE.MeshBasicMaterial({
-            transparent: true,
-            opacity: 0
-        });
-
-    // LEFT
-    const leftMesh =
-        new THREE.Mesh(
-            new THREE.PlaneGeometry(
-                0.35,
-                0.18
-            ),
-            hotspotMaterial
-        );
-
-    leftMesh.position.set(
-        -0.35,
-        0,
-        0.02
-    );
-
-    leftMesh.name = "leftHotspot";
-
-    visor.add(leftMesh);
-
-    // CENTER
-    const centerMesh =
-        new THREE.Mesh(
-            new THREE.PlaneGeometry(
-                0.35,
-                0.18
-            ),
-            hotspotMaterial
-        );
-
-    centerMesh.position.set(
-        0,
-        0,
-        0.02
-    );
-
-    centerMesh.name =
-        "centerHotspot";
-
-    visor.add(centerMesh);
-
-    // RIGHT
-    const rightMesh =
-        new THREE.Mesh(
-            new THREE.PlaneGeometry(
-                0.35,
-                0.18
-            ),
-            hotspotMaterial
-        );
-
-    rightMesh.position.set(
-        0.35,
-        0,
-        0.02
-    );
-
-    rightMesh.name =
-        "rightHotspot";
-
-    visor.add(rightMesh);
-
-    setupRaycaster(
-        leftMesh,
-        centerMesh,
-        rightMesh
-    );
-}
+// =====================================================
+// RAYCASTER
+// =====================================================
 
 function setupRaycaster(
-    leftMesh,
-    centerMesh,
-    rightMesh
+  leftMesh,
+  centerMesh,
+  rightMesh
 ) {
 
-    const raycaster =
-        new THREE.Raycaster();
+  const raycaster =
+      new THREE.Raycaster();
 
-    const mouse =
-        new THREE.Vector2();
+  const mouse =
+      new THREE.Vector2();
 
-    window.addEventListener(
-        "click",
-        (event) => {
+  window.addEventListener(
+      "click",
+      (event) => {
 
-            mouse.x =
-                (event.clientX /
-                    window.innerWidth) *
-                    2 -
-                1;
+          mouse.x =
+              (event.clientX / window.innerWidth) * 2 - 1;
 
-            mouse.y =
-                -(event.clientY /
-                    window.innerHeight) *
-                    2 +
-                1;
+          mouse.y =
+              -(event.clientY / window.innerHeight) * 2 + 1;
 
-                const cameraEl =
-                document.querySelector("a-camera");
-            
-            const camera =
-                cameraEl.getObject3D("camera");
-            
-            if (!camera) {
-                console.log("Camera not ready");
-                return;
-            }
-            
-            raycaster.setFromCamera(
-                mouse,
-                camera
-            );
+          const cameraEl =
+              document.querySelector(
+                  "a-camera"
+              );
 
-            const hits =
-                raycaster.intersectObjects(
-                    [
-                        leftMesh,
-                        centerMesh,
-                        rightMesh
-                    ],
-                    true
-                );
+          const camera =
+              cameraEl.getObject3D(
+                  "camera"
+              );
 
-            if (!hits.length)
-                return;
+          if (!camera) return;
 
-            const object =
-                hits[0].object;
+          raycaster.setFromCamera(
+              mouse,
+              camera
+          );
 
-            if (
-                object.name ===
-                "leftHotspot"
-            ) {
+          const hits =
+              raycaster.intersectObjects(
+                  [
+                      leftMesh,
+                      centerMesh,
+                      rightMesh
+                  ],
+                  true
+              );
 
-                openImage(
-                    "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
-                );
-            }
+          if (!hits.length)
+              return;
 
-            if (
-                object.name ===
-                "centerHotspot"
-            ) {
+          const object =
+              hits[0].object;
 
-                openImage(
-                    "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
-                );
-            }
+          console.log(
+              "Clicked:",
+              object.name
+          );
 
-            if (
-                object.name ===
-                "rightHotspot"
-            ) {
+          if (
+              object.name ===
+              "leftHotspot"
+          ) {
 
-                openVideo(
-                    "https://www.youtube.com/embed/Y69kGmPeHw0?autoplay=1"
-                );
-            }
-        }
-    );
+              openImage(
+                  "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
+              );
+          }
+
+          if (
+              object.name ===
+              "centerHotspot"
+          ) {
+
+              openImage(
+                  "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
+              );
+          }
+
+          if (
+              object.name ===
+              "rightHotspot"
+          ) {
+
+              openVideo(
+                  "https://www.youtube.com/embed/EAPy76vxF5s?autoplay=1"
+              );
+          }
+      }
+  );
 }
