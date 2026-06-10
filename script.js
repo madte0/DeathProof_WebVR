@@ -101,7 +101,23 @@ AFRAME.registerComponent('scroll-animation-scrub', {
       );
     };
 
+    this._touchStartY = 0;
+    this._onTouchStart = (e) => {
+      this._touchStartY = e.touches[0].clientY;
+    };
+    this._onTouchMove = (e) => {
+      if (!this.duration) return;
+      const deltaY = this._touchStartY - e.touches[0].clientY;
+      this._touchStartY = e.touches[0].clientY;
+      this.targetTime = Math.max(
+        0,
+        Math.min(this.duration, this.targetTime + deltaY * this.data.sensitivity * 4)
+      );
+    };
+
     window.addEventListener('wheel', this._onWheel);
+    window.addEventListener('touchstart', this._onTouchStart, { passive: true });
+    window.addEventListener('touchmove',  this._onTouchMove,  { passive: true });
   },
 
   tick() {
@@ -142,6 +158,8 @@ AFRAME.registerComponent('scroll-animation-scrub', {
   },
 
   remove() {
-    window.removeEventListener('wheel', this._onWheel);
+    window.removeEventListener('wheel',      this._onWheel);
+    window.removeEventListener('touchstart', this._onTouchStart);
+    window.removeEventListener('touchmove',  this._onTouchMove);
   },
 });
