@@ -146,20 +146,16 @@ AFRAME.registerComponent('scroll-animation-scrub', {
   },
 });
 
-// modal windows
+// =====================================================
+// MODAL SYSTEM
+// =====================================================
 
 const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modalImage");
+const youtubeFrame = document.getElementById("youtubeFrame");
+const closeModal = document.getElementById("closeModal");
 
-const modalImage =
-document.getElementById("modalImage");
-
-const youtubeFrame =
-document.getElementById("youtubeFrame");
-
-const closeModal =
-document.getElementById("closeModal");
-
-function openImage(src){
+function openImage(src) {
 
     modal.style.display = "block";
 
@@ -167,60 +163,249 @@ function openImage(src){
 
     youtubeFrame.style.display = "none";
 
+    youtubeFrame.src = "";
+
     modalImage.src = src;
 }
 
-function openVideo(url){
+function openVideo(url) {
 
     modal.style.display = "block";
 
-    youtubeFrame.style.display = "block";
-
     modalImage.style.display = "none";
+
+    youtubeFrame.style.display = "block";
 
     youtubeFrame.src = url;
 }
 
-closeModal.addEventListener("click",()=>{
+closeModal.addEventListener("click", () => {
 
     modal.style.display = "none";
 
     youtubeFrame.src = "";
 });
 
-// 1st image
+modal.addEventListener("click", (e) => {
 
-document
-.getElementById("zone1")
-.addEventListener("click",()=>{
+    if (e.target === modal) {
 
-    openImage(
-        "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
-    );
+        modal.style.display = "none";
 
+        youtubeFrame.src = "";
+    }
 });
 
-// 2nd image
+// =====================================================
+// VISOR HOTSPOTS
+// =====================================================
 
-document
-.getElementById("zone2")
-.addEventListener("click",()=>{
+window.addEventListener("load", () => {
 
-    openImage(
-        "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
-    );
+    const modelEntity =
+        document.querySelector("#deathProofModel");
 
+    modelEntity.addEventListener("model-loaded", () => {
+
+        const root =
+            modelEntity.getObject3D("mesh");
+
+        if (!root) {
+
+            console.error("GLTF root not found");
+
+            return;
+        }
+
+        const visor =
+            root.getObjectByName(
+                "visorvisor_fotos_GRP"
+            );
+
+        if (!visor) {
+
+            console.error(
+                "visorvisor_fotos_GRP not found"
+            );
+
+            return;
+        }
+
+        console.log(
+            "visor found",
+            visor
+        );
+
+        createHotspots(visor);
+    });
 });
 
+function createHotspots(visor) {
 
-// video
+    const hotspotMaterial =
+        new THREE.MeshBasicMaterial({
+            transparent: true,
+            opacity: 0
+        });
 
-document
-.getElementById("zone3")
-.addEventListener("click",()=>{
+    // LEFT
+    const leftMesh =
+        new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                0.35,
+                0.18
+            ),
+            hotspotMaterial
+        );
 
-    openVideo(
-        "https://www.youtube.com/embed/Y69kGmPeHw0"
+    leftMesh.position.set(
+        -0.35,
+        0,
+        0.02
     );
 
-});
+    leftMesh.name = "leftHotspot";
+
+    visor.add(leftMesh);
+
+    // CENTER
+    const centerMesh =
+        new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                0.35,
+                0.18
+            ),
+            hotspotMaterial
+        );
+
+    centerMesh.position.set(
+        0,
+        0,
+        0.02
+    );
+
+    centerMesh.name =
+        "centerHotspot";
+
+    visor.add(centerMesh);
+
+    // RIGHT
+    const rightMesh =
+        new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                0.35,
+                0.18
+            ),
+            hotspotMaterial
+        );
+
+    rightMesh.position.set(
+        0.35,
+        0,
+        0.02
+    );
+
+    rightMesh.name =
+        "rightHotspot";
+
+    visor.add(rightMesh);
+
+    setupRaycaster(
+        leftMesh,
+        centerMesh,
+        rightMesh
+    );
+}
+
+function setupRaycaster(
+    leftMesh,
+    centerMesh,
+    rightMesh
+) {
+
+    const raycaster =
+        new THREE.Raycaster();
+
+    const mouse =
+        new THREE.Vector2();
+
+    window.addEventListener(
+        "click",
+        (event) => {
+
+            mouse.x =
+                (event.clientX /
+                    window.innerWidth) *
+                    2 -
+                1;
+
+            mouse.y =
+                -(event.clientY /
+                    window.innerHeight) *
+                    2 +
+                1;
+
+                const cameraEl =
+                document.querySelector("a-camera");
+            
+            const camera =
+                cameraEl.getObject3D("camera");
+            
+            if (!camera) {
+                console.log("Camera not ready");
+                return;
+            }
+            
+            raycaster.setFromCamera(
+                mouse,
+                camera
+            );
+
+            const hits =
+                raycaster.intersectObjects(
+                    [
+                        leftMesh,
+                        centerMesh,
+                        rightMesh
+                    ],
+                    true
+                );
+
+            if (!hits.length)
+                return;
+
+            const object =
+                hits[0].object;
+
+            if (
+                object.name ===
+                "leftHotspot"
+            ) {
+
+                openImage(
+                    "./assets/chevy_nova_scene_webpTextures_glb/photo1.webp"
+                );
+            }
+
+            if (
+                object.name ===
+                "centerHotspot"
+            ) {
+
+                openImage(
+                    "./assets/chevy_nova_scene_webpTextures_glb/photo2.webp"
+                );
+            }
+
+            if (
+                object.name ===
+                "rightHotspot"
+            ) {
+
+                openVideo(
+                    "https://www.youtube.com/embed/Y69kGmPeHw0?autoplay=1"
+                );
+            }
+        }
+    );
+}
