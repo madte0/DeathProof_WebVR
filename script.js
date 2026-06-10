@@ -241,7 +241,7 @@ function createHotspots(visor) {
       leftMesh.position.set(
         0.02,
         -0.01,
-        0.08
+        0.25
     );
 
   leftMesh.name = "leftHotspot";
@@ -264,7 +264,7 @@ function createHotspots(visor) {
       centerMesh.position.set(
         0.27,
         -0.01,
-        0.08
+        0.25
     );
 
   centerMesh.name = "centerHotspot";
@@ -287,7 +287,7 @@ function createHotspots(visor) {
       rightMesh.position.set(
         0.52,
         -0.01,
-        0.08
+        0.25
     );
 
   rightMesh.name = "rightHotspot";
