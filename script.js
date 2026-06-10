@@ -21,6 +21,13 @@ AFRAME.registerComponent('scroll-animation-scrub', {
       this.sceneRoot  = gltf.scene || gltf;
       const clips     = gltf.animations || [];
 
+      // Force roughness to 1.0 on every mesh material
+      this.sceneRoot.traverse(obj => {
+        if (!obj.isMesh) return;
+        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+        mats.forEach(m => { if (m) m.roughness = 1.0; });
+      });
+
       // ── Log everything so we can see what the new export contains ──
       console.log('[scrub] Total clips:', clips.length);
       clips.forEach((clip, ci) => {
