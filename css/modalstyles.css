@@ -71,38 +71,83 @@
     cursor:pointer;
 }
 
-/* ===================================
-   INTRO VIDEO
-=================================== */
+/* =====================================
+   START SCREEN
+===================================== */
 
-#intro-video-container{
+#start-screen{
+
     position:fixed;
     top:0;
     left:0;
+
     width:100%;
     height:100%;
+
     background:black;
-    z-index:99999;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
+    z-index:99999;
+}
+
+#start-btn{
+
+    padding:20px 40px;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:10px;
+}
+
+/* =====================================
+   INTRO VIDEO
+===================================== */
+
+#intro-video-container{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:black;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:99998;
+
     opacity:1;
+
     transition:opacity 1.5s ease;
 }
 
-#intro-video-container.fade-out{
-    opacity:0;
-    pointer-events:none;
-}
-
 #intro-video{
+
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
+.fade-out{
+
+    opacity:0;
+}
+
 #main-scene{
+
     transition:opacity 1.5s ease;
 }

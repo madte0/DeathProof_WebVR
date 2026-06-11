@@ -505,31 +505,38 @@ function setupRaycaster(
   );
 }
 
-/* ===================================
-   INTRO VIDEO
-=================================== */
+/* =====================================
+   INTRO EXPERIENCE
+===================================== */
+
+const startBtn = document.getElementById("start-btn");
+const startScreen = document.getElementById("start-screen");
 
 const introVideo = document.getElementById("intro-video");
 const introContainer = document.getElementById("intro-video-container");
+
 const mainScene = document.getElementById("main-scene");
 
-if (introVideo) {
+startBtn.addEventListener("click", () => {
 
-    introVideo.addEventListener("ended", () => {
+    startScreen.style.display = "none";
 
-        // Fade video away
-        introContainer.classList.add("fade-out");
+    introContainer.style.display = "flex";
 
-        // Show scene
-        mainScene.style.opacity = "1";
+    introVideo.play();
 
-        // Remove video container after fade
-        setTimeout(() => {
+});
 
-            introContainer.remove();
+introVideo.addEventListener("ended", () => {
 
-        }, 1500);
+    introContainer.classList.add("fade-out");
 
-    });
+    mainScene.style.opacity = "1";
 
-}
+    setTimeout(() => {
+
+        introContainer.remove();
+
+    }, 1500);
+
+});
