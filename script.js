@@ -1,3 +1,11 @@
+// Three.js r168 (bundled in A-Frame 1.7.x) crashes when A-Frame calls
+// renderer.xr.setSession(null) during VR teardown — patch it to be a no-op.
+document.querySelector('a-scene').addEventListener('loaded', function () {
+    const xr = this.renderer.xr;
+    const orig = xr.setSession.bind(xr);
+    xr.setSession = (session) => session ? orig(session) : Promise.resolve();
+});
+
 (function () {
     const btn = document.getElementById('sound-btn');
     let playing = false;

@@ -43,7 +43,8 @@
     <!-- Starts muted until the user clicks (browser autoplay policy requires a gesture) -->
     <button id="sound-btn" title="Unmute sound">&#128263;</button>
 
-    <a-scene id="main-scene" style="opacity:0;">
+    <a-scene id="main-scene" style="opacity:0;"
+        webxr="optionalFeatures: local-floor, bounded-floor, hand-tracking">
         <!-- Assets Management System -->
         <a-assets>
 
