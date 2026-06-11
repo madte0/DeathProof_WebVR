@@ -533,6 +533,11 @@ introVideo.addEventListener("ended", () => {
 
     mainScene.style.opacity = "1";
 
+    const filmGrainOverlay = document.getElementById("film-grain-overlay");
+    const filmGrainVideo   = document.getElementById("film-grain-video");
+    filmGrainVideo.play();
+    filmGrainOverlay.style.opacity = "1";
+
     setTimeout(() => {
 
         introContainer.remove();
