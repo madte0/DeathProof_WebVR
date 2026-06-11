@@ -504,3 +504,32 @@ function setupRaycaster(
       }
   );
 }
+
+/* ===================================
+   INTRO VIDEO
+=================================== */
+
+const introVideo = document.getElementById("intro-video");
+const introContainer = document.getElementById("intro-video-container");
+const mainScene = document.getElementById("main-scene");
+
+if (introVideo) {
+
+    introVideo.addEventListener("ended", () => {
+
+        // Fade video away
+        introContainer.classList.add("fade-out");
+
+        // Show scene
+        mainScene.style.opacity = "1";
+
+        // Remove video container after fade
+        setTimeout(() => {
+
+            introContainer.remove();
+
+        }, 1500);
+
+    });
+
+}

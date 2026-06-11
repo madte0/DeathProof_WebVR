@@ -70,3 +70,39 @@
 
     cursor:pointer;
 }
+
+/* ===================================
+   INTRO VIDEO
+=================================== */
+
+#intro-video-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    z-index:99999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:1;
+    transition:opacity 1.5s ease;
+}
+
+#intro-video-container.fade-out{
+    opacity:0;
+    pointer-events:none;
+}
+
+#intro-video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+#main-scene{
+    transition:opacity 1.5s ease;
+}
